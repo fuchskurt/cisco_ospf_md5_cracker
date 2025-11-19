@@ -18,19 +18,6 @@ rfd = "0.15.4"
 incremental = true            # Enable incremental compilation for faster development builds.
 
 [profile.release]
-rustflags = [
-    "-Z", "unstable-options", # (Nightly) Enable experimental features.
-    "-Z", "dylib-lto", # (Nightly) Enable LTO for dynamic libraries.
-    "-C", "link-arg=-Ofast", # Pass -Ofast to the linker for aggressive (potentially unsafe) optimizations.
-    "-C", "link-arg=-O3", # Pass -O3 to the linker for aggressive optimizations.
-    "-C", "link-arg=-Wl,--strip-all", # Strip all symbols from final binary.
-    "-C", "link-self-contained=+linker", # Strip all symbols from final binary.
-    "-C", "linker-features=+lld", # Enable rust-lld linking.
-    "-C", "linker-plugin-lto", # Enable Link Time Optimization Plugin.
-    "-C", "lto=fat", # Enable "fat" (full) Link Time Optimization.
-    "-C", "embed-bitcode=yes", # Embed LLVM bitcode (only needed for post-processing or special LTO use).
-    "-C", "link-arg=-flto", # Pass LTO flag to linker (needed with some toolchains).
-]
 panic = "abort"               # Abort process immediately on panic in release builds (smaller binary, no unwinding).
 codegen-units = 1             # Use a single code generation unit for best optimizations.
 lto = "fat"                   # Use "fat" LTO for maximum cross-crate optimization.
