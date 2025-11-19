@@ -1,0 +1,18 @@
+# Rust/Cargo build
+/target/
+**/*.rs.bk
+Cargo.lock
+
+# IDEs and editors
+.idea/
+*.iml
+*.swp
+*.swo
+*.tmp
+*.bak
+.vscode/
+*.code-workspace
+
+# OS junk
+.DS_Store
+Thumbs.db
