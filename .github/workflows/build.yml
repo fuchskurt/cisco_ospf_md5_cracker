@@ -31,5 +31,5 @@ jobs:
       - name: Upload binary artifact
         uses: actions/upload-artifact@v4
         with:
-          name: cisco_ospf_md5_cracker-${{ matrix.os }}
-          path: target/release/cisco_ospf_md5_cracker*
+          name: crack_tool_cisco_ospf_md5-${{ matrix.os }}
+          path: target/release/crack_tool_cisco_ospf_md5*
