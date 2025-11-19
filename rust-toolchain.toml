@@ -1,0 +1,6 @@
+[toolchain]
+# Use the nightly channel to access unstable features.
+channel = "nightly"
+
+# Use the default profile
+profile = "default"
