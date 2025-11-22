@@ -37,6 +37,7 @@ struct OspfGuiApp {
     charset_letters: bool,
     charset_numbers: bool,
     charset_symbols: bool,
+    set_charset_custom: bool,
     charset_custom: String,
     key_max_len: usize,
 }
@@ -44,7 +45,6 @@ struct OspfGuiApp {
 impl eframe::App for OspfGuiApp {
     fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
         egui::CentralPanel::default().show(ctx, |ui| {
-                                         ui.heading("OSPF MD5 Brute-force GUI");
                                          ui.horizontal(|ui| {
                                                ui.label("PCAP file path:");
                                                if ui.button("Browse...").clicked()
@@ -67,14 +67,14 @@ impl eframe::App for OspfGuiApp {
                                                ui.checkbox(&mut self.charset_numbers,
                                                            "Numbers 0-9");
                                                ui.checkbox(&mut self.charset_symbols, "Symbols");
-                                               ui.label("Custom:");
+                                               ui.checkbox(&mut self.set_charset_custom, "Custom");
                                                ui.text_edit_singleline(&mut self.charset_custom);
                                            });
 
                                          ui.horizontal(|ui| {
                                                ui.label("Max key length:");
                                                ui.add(egui::Slider::new(&mut self.key_max_len,
-                                                                        1..=32).suffix(" chars"));
+                                                                        1..=16).suffix(" chars"));
                                            });
 
                                          let progress =
@@ -160,7 +160,9 @@ impl OspfGuiApp {
         if self.charset_symbols {
             charset.push_str(r#"!@#$%^&*()-_=+[]{};:'",.<>?/|\`~"#);
         }
+        if self.set_charset_custom {
         charset.push_str(&self.charset_custom);
+        }
         if charset.is_empty() {
             "abcdefghijklmnopqrstuvwxyz".to_string()
         } else {
