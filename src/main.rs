@@ -1,3 +1,17 @@
+//! A tool to brute-force OSPF MD5 authentication keys from PCAP files.
+#![feature(once_cell_try)]
+#![feature(str_as_str)]
+#![warn(clippy::all, clippy::pedantic, clippy::restriction, clippy::nursery)]
+#![deny(warnings)]
+#![expect(clippy::std_instead_of_alloc, reason = "This will use std")]
+#![expect(clippy::pub_with_shorthand, reason = "Cleaner code")]
+#![expect(clippy::implicit_return, reason = "Cleaner code")]
+#![expect(clippy::blanket_clippy_restriction_lints, reason = "Cleaner code")]
+#![expect(clippy::future_not_send, reason = "Actix is designed that way")]
+#![expect(clippy::semicolon_outside_block, reason = "Cleaner code")]
+#![expect(clippy::separated_literal_suffix, reason = "Cleaner code")]
+
+
 use eframe::egui;
 use pcap_file::{
     pcap::PcapReader,
